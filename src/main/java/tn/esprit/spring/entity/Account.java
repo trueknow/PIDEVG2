@@ -1,6 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+
 import java.util.Collection;
 import java.util.Date;
 
@@ -12,7 +13,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.persistence.OneToOne;
+import tn.esprit.spring.entity.User;
 
 @Entity
 @DiscriminatorColumn(name="TYPE_ACMPT")
@@ -27,9 +29,8 @@ public  abstract class Account implements Serializable {
 	private Date dateCreation;
 	private double discount;
 	private double overdraft;
-	@ManyToOne
-	@JoinColumn(name="ID_CLIENT")
-	private Client client;
+	@OneToOne
+	private User user;
 	@OneToMany(mappedBy="account")
 	private Collection<Transaction> transactions;
 	
@@ -37,12 +38,12 @@ public  abstract class Account implements Serializable {
 		
 	}
 
-	public Account(String accountId, Date dateCreation, double discount,double overdraft, Client client) {
+	public Account(String accountId, Date dateCreation, double discount, double overdraft, User user) {
 		this.accountId = accountId;
 		this.dateCreation = dateCreation;
 		this.discount = discount;
 		this.overdraft = overdraft;
-		this.client = client;
+		this.user = user;
 	}
 
 	public String getAccounIdt() {
@@ -69,12 +70,12 @@ public  abstract class Account implements Serializable {
 		this.discount = discount;
 	}
 
-	public Client getClient() {
-		return client;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCleint(Client client) {
-		this.client = client;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Collection<Transaction> getTransactions() {

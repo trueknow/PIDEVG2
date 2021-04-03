@@ -9,7 +9,7 @@ import tn.esprit.spring.entity.Transaction;
 
 public interface ITransactionService {
 
-	public Account getAccountById(String accountid);
+	public Account getAccountById(String accountId);
 
 	void payToAccount(String accountId, double amount);
 
