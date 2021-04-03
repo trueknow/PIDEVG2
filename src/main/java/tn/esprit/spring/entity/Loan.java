@@ -8,7 +8,7 @@ public class Loan {
     private String payment_method;
     private String description  ; //PDF
     private String raison ;  //PDF
-    private int duration;  }
+    private int duration;  
   
     
 
@@ -26,7 +26,7 @@ public class Loan {
         
        
     
-
+}
 
 
 
