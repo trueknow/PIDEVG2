@@ -15,17 +15,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name ="topics")
-
 public class Topic implements Serializable{
 	private static final long serialVersionUID = 1L;
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTopic ;
     private String descriptionTopic;
-    @OneToMany (cascade = CascadeType.ALL, mappedBy ="Topic" )
+    @OneToMany (cascade = CascadeType.ALL, mappedBy ="topic" )
     private Set<Post> Post;
     @ManyToOne
 	@JoinColumn(name="ID_USER")
-    
     private User user ;
 
    
