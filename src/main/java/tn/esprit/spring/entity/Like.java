@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Like implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idlike ;
+    private Long idlike ;
 	@ManyToOne
     @JoinColumn(name="idpost")
     private Post post ;

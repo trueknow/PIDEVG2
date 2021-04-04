@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +22,11 @@ import org.springframework.data.annotation.Id;
 @Entity
 @Table(name = "ChatRoom")
 //@Document
-public class ChatRoom {
+public class ChatRoom implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
     @Id@GeneratedValue (strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String chatId;
     private String senderId;
     private String recipientId;

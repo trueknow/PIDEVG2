@@ -32,7 +32,7 @@ public class TrasanctionServiceImp implements ITransactionService {
 
 	@Override
 	public Account getAccountById(String accountId) {
-		Optional<Account> account = accountRepository.findById(accountId);
+		Optional<Account> account = accountRepository.findById(Long.parseLong(accountId));
 		if (account == null)
 			throw new RuntimeException("unfound account");
 
@@ -41,7 +41,7 @@ public class TrasanctionServiceImp implements ITransactionService {
 	
 	@Override
 	public void payToAccount(String accountId, double amount) {
-		Account account = accountRepository.getOne(accountId);
+		Account account = accountRepository.getOne(Long.parseLong(accountId));
 		Deposit deposit = new Deposit(new Date(), amount, account);
 		transactionRepository.save(deposit);
 		account.setDiscount(account.getDiscount() + amount);
@@ -51,7 +51,7 @@ public class TrasanctionServiceImp implements ITransactionService {
 	
 	@Override
 	public void removeFromAccount(String accountId, double amount) {
-		Account account = accountRepository.getOne(accountId);
+		Account account = accountRepository.getOne(Long.parseLong(accountId));
 		double solde = 0;
 		if (account.getDiscount() + solde < amount){
 			throw new RuntimeException("Insufficient discount ");}

@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -24,8 +26,8 @@ public  abstract class Account implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	private String accountId;
+	@Id@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long accountId;
 	private Date dateCreation;
 	private double discount;
 	private double overdraft;
@@ -38,7 +40,7 @@ public  abstract class Account implements Serializable {
 		
 	}
 
-	public Account(String accountId, Date dateCreation, double discount, double overdraft, User user) {
+	public Account(Long accountId, Date dateCreation, double discount, double overdraft, User user) {
 		this.accountId = accountId;
 		this.dateCreation = dateCreation;
 		this.discount = discount;
@@ -46,11 +48,11 @@ public  abstract class Account implements Serializable {
 		this.user = user;
 	}
 
-	public String getAccounIdt() {
+	public Long getAccounIdt() {
 		return accountId;
 	}
 
-	public void setAccountId(String accountId) {
+	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
 	}
 

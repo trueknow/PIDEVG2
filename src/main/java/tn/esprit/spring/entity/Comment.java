@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idcm ;
+    private Long idcm ;
     private String description;
     private String date  ;
     @ManyToOne

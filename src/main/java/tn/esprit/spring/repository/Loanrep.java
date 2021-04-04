@@ -5,8 +5,7 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.spring.entity.Loan;
 
 @Repository
-
-public interface Loanrep extends JpaRepository<Loan, String> {
+public interface Loanrep extends JpaRepository<Loan, Long> {
 
 }
 

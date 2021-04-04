@@ -18,7 +18,7 @@ public class Presences {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Integer user_id;
+	private Long user_id;
 	private String date;
 	private Boolean present;
 	private String obs;

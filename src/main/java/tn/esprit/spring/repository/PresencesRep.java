@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.spring.entity.Presences;
 
 @Repository
-
 public interface PresencesRep extends JpaRepository<Presences, Long> {
 
 }

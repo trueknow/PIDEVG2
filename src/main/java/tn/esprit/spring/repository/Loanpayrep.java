@@ -1,5 +1,11 @@
 package tn.esprit.spring.repository;
 
-public interface Loanpayrep {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import tn.esprit.spring.entity.Loanpay;
+
+@Repository
+public interface Loanpayrep extends CrudRepository<Loanpay, Long>{
 
 }

@@ -5,7 +5,7 @@ import java.util.Objects;
 
 
 public class Vacation {
-    private String congeID ;
+    private Long congeID ;
     private String startTime  ;
     private String endTime  ;
     private int duration;
@@ -18,7 +18,7 @@ public class Vacation {
     
 
     
-    public Vacation( String congeID, String startTime ,String endTime
+    public Vacation( Long congeID, String startTime ,String endTime
     		,int duration,String status,String pic,String userId,String validator,String Sender   ) {
         this.congeID = congeID;
         this.startTime= startTime;

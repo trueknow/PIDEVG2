@@ -23,6 +23,8 @@ import javax.persistence.Table;
 @Table(name = "Chatmessage")
 //@Document
 public class ChatMessage implements Serializable{
+	
+   private static final long serialVersionUID = 1L;
    @Id@GeneratedValue (strategy = GenerationType.IDENTITY)
    private Long id;
    private String chatId;

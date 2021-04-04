@@ -21,12 +21,13 @@ import lombok.Setter;
 @Entity()
 @Table( name = "loan_log")
 public class Loanpay implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Setter
 	@Getter
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="idrequest")
-	private int id;
+	private Long id;
 	@Getter
 	@Setter
 	@Column(name = "Amount")
