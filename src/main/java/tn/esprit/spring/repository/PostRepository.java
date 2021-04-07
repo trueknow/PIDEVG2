@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostRepository  extends CrudRepository<Post, Long> {
-	@Query("SELECT p FROM Post p WHERE p.idTopic= :idTopic")
-	List<Post> retrievePostsByTopic(@Param("idTopic") Long idTopic);
+	@Query("SELECT p FROM Post p WHERE p.topic=:topic")
+	List<Post> retrievePostsByTopic(@Param("topic") Long topic);
 
 
 }

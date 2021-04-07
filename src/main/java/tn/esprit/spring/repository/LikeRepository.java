@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LikeRepository  extends CrudRepository<Like, Long> {
-	@Query("SELECT l FROM Like l WHERE l.idpost= :idpost")
-	List<Like> retrieveLikesByPost(@Param("idpost") Long idpost);
+	@Query("SELECT l FROM Like l WHERE l.post=:post")
+	List<Like> retrieveLikesByPost(@Param("post") Long post);
 
 
 }

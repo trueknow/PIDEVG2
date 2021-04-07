@@ -47,6 +47,27 @@ public class Like implements Serializable{
 	public void setIdlike(Long idlike) {
 		this.idlike = idlike;
 	}
+	public Post getPost() {
+		return post;
+	}
+	public void setPost(Post post) {
+		this.post = post;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public Like(Long idlike, Post post, User user) {
+		super();
+		this.idlike = idlike;
+		this.post = post;
+		this.user = user;
+	}
 
 
 

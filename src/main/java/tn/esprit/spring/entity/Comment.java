@@ -79,5 +79,28 @@ public class Comment implements Serializable {
 	public void setIdcm(Long idcm) {
 		this.idcm = idcm;
 	}
+	public Post getPost() {
+		return post;
+	}
+	public void setPost(Post post) {
+		this.post = post;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public Comment(Long idcm, String description, String date, Post post, User user) {
+		super();
+		this.idcm = idcm;
+		this.description = description;
+		this.date = date;
+		this.post = post;
+		this.user = user;
+	}
 	
 }

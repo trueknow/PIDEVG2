@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RatingRepository  extends CrudRepository<Rating, Long> {
-	@Query("SELECT r FROM Rating r WHERE r.idpost= :idpost")
-	List<Rating> retrieveRatingsByPost(@Param("idpost") Long idpost);
+	@Query("SELECT r FROM Rating r WHERE r.post=:post")
+	List<Rating> retrieveRatingsByPost(@Param("post") Long post);
 
 
 }

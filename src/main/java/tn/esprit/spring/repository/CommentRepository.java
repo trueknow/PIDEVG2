@@ -12,9 +12,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface commentRepository  extends CrudRepository<Comment, Long> {
-	@Query("SELECT c FROM Comment c WHERE c.idpost= :idpost")
-	List<Comment> retrieveCommentsByPost(@Param("idpost") Long idpost);
+public interface CommentRepository  extends CrudRepository<Comment, Long> {
+@Query("SELECT c FROM Comment c WHERE c.post =:post ")
+List<Comment> retrieveCommentsByPost(@Param("post") Long post);
 
 
 }
