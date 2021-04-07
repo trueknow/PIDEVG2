@@ -5,11 +5,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import tn.esprit.spring.entity.Like;
+
+
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.repository.LikeRepository;
 
 @Service
-public  class Likeserviceempl implements Likeservice {
+public  class Likeserviceempl implements LikeService {
 
 	@Autowired
 	LikeRepository LikesRepository;
@@ -25,23 +27,39 @@ public  class Likeserviceempl implements Likeservice {
 	}
 
 	@Override
-	public Like addLikes(Like Likes) {
+	public Like addLikes(Like l) {
 		Like LikeSaved = null;
-		LikeSaved = LikesRepository.save(Likes);
+		LikeSaved = LikesRepository.save(l);
 		return LikeSaved;
 	}
 
 	@Override
-	public void deleteLikes(Long idlike) {
-		LikesRepository.deleteById(idlike);
+	public void deleteLikes(String idlike) {
+		LikesRepository.deleteById(Long.parseLong(idlike));
 		
 	}
 
 	@Override
-	public Like updateLikes(Like Likes) {
-		Like LikesAdded = (Like) LikesRepository.save(Likes);
+	public Like updateLikes(Like L) {
+		Like LikesAdded = LikesRepository.save(L);
 		return LikesAdded;
 	}
+	@Override
+	public Like retrieveLike (String idlike) {
+		L.info("in retrieveLike idlike = " + idlike);
+		Like l = LikesRepository.findById(Long.parseLong(idlike)).orElse(null);
+		L.info("like returned : " + l);
+		return l;
+	}
+	@Override
+	public List<Like> retrieveAllLikes() {
+		List<Like> likes = (List<Like>) LikesRepository.findAll();
+		for (Like like : likes) {
+			L.info("like +++ : " + like);
+		}
+		return likes;
+	}
+	
 
 }
 

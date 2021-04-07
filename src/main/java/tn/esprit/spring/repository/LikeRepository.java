@@ -17,5 +17,5 @@ public interface LikeRepository  extends CrudRepository<Like, Long> {
 	@Query("SELECT l FROM Like l WHERE l.post=:post")
 	List<Like> retrieveLikesByPost(@Param("post") Long post);
 
-
+	
 }

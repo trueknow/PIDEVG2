@@ -17,4 +17,6 @@ public interface CommentRepository  extends CrudRepository<Comment, Long> {
 List<Comment> retrieveCommentsByPost(@Param("post") Long post);
 
 
+
+
 }

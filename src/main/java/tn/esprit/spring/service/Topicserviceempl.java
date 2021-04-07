@@ -5,11 +5,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import tn.esprit.spring.entity.Topic;
+
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.repository.TopicRepository;
 
 @Service
-public  class Topicserviceempl implements Topicservice {
+public  class Topicserviceempl implements TopicService {
 
 	@Autowired
 	TopicRepository TopicRepository;
@@ -25,23 +26,39 @@ public  class Topicserviceempl implements Topicservice {
 	}
 
 	@Override
-	public Topic addTopic(Topic Topics) {
+	public Topic addTopic(Topic t) {
 		Topic TopicSaved = null;
-		TopicSaved = TopicRepository.save(Topics);
+		TopicSaved = TopicRepository.save(t);
 		return TopicSaved;
 	}
 
 	@Override
-	public void deleteTopic(Long idTopic) {
-		TopicRepository.deleteById(idTopic);
+	public void deleteTopic(String idTopic) {
+		TopicRepository.deleteById(Long.parseLong(idTopic));
 		
 	}
 
 	@Override
-	public Topic updateTopic(Topic Topics) {
-		Topic TopicAdded = (Topic) TopicRepository.save(Topics);
+	public Topic updateTopic(Topic t) {
+		Topic TopicAdded = TopicRepository.save(t);
 		return TopicAdded;
 	}
+	@Override
+	public Topic retrieveTopic(String idTopic) {
+		L.info("in retrieveTopic idTopic= " + idTopic);
+		Topic t = TopicRepository.findById(Long.parseLong(idTopic)).orElse(null);
+		L.info("topic returned : " + t);
+		return t;
+	}
+	@Override
+	public List<Topic> retrieveAllTopics() {
+		List<Topic> topics = (List<Topic>) TopicRepository.findAll();
+		for (Topic topic : topics) {
+			L.info("topic +++ : " + topic);
+		}
+		return topics;
+	}
+
 
 }
 
