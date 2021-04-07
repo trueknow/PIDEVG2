@@ -66,8 +66,14 @@ public class User  implements Serializable {
 	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
 	private Set<Topic> Topic;
 	
+
+	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
+	private Set<Offdate> offdate;
+	
 	@OneToOne(mappedBy="user")
 	private Account account;
+	@OneToOne(mappedBy="user")
+	private Presences presences;
 	
 	public User( @NotBlank(message = "Display name required ") @Size(min = 4) String name,
 			@NotBlank(message = "Display name required") @Size(min = 4) String prename,
