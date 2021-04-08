@@ -2,25 +2,21 @@ package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 
+
+
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import tn.esprit.spring.entity.User;
 
 @Entity
-@DiscriminatorColumn(name="TYPE_ACMPT")
-public  abstract class Account implements Serializable {
+public  class Account implements Serializable {
 	
 	/**
 	 * 
@@ -29,8 +25,7 @@ public  abstract class Account implements Serializable {
 	@Id@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long accountId;
 	private Date dateCreation;
-	private double discount;
-	private double overdraft;
+	private double amount;
 	@OneToOne
 	private User user;
 	@OneToMany(mappedBy="account")
@@ -40,11 +35,9 @@ public  abstract class Account implements Serializable {
 		
 	}
 
-	public Account(Long accountId, Date dateCreation, double discount, double overdraft, User user) {
+	public Account(Long accountId, Date dateCreation, User user) {
 		this.accountId = accountId;
 		this.dateCreation = dateCreation;
-		this.discount = discount;
-		this.overdraft = overdraft;
 		this.user = user;
 	}
 
@@ -64,13 +57,6 @@ public  abstract class Account implements Serializable {
 		this.dateCreation = dateCreation;
 	}
 
-	public double getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
 
 	public User getUser() {
 		return user;
@@ -88,12 +74,13 @@ public  abstract class Account implements Serializable {
 		this.transactions = transactions;
 	}
 
-	public double getOverdraft() {
-		return overdraft;
+
+	public double getAmount() {
+		return amount;
 	}
 
-	public void setOverdraft(double overdraft) {
-		this.overdraft = overdraft;
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 

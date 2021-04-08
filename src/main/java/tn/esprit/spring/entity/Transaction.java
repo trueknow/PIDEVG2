@@ -17,7 +17,7 @@ import javax.persistence.DiscriminatorType;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "TYPE_TR",length=1)
-public abstract class Transaction implements Serializable {
+public class Transaction implements Serializable {
 
 	/**
 	 * 

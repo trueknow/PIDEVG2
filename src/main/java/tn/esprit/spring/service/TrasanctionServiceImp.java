@@ -3,7 +3,7 @@ package tn.esprit.spring.service;
 
 import java.util.Date;
 
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,37 +30,40 @@ public class TrasanctionServiceImp implements ITransactionService {
 	@Autowired
 	private TransactionRepository transactionRepository;
 
-	@Override
-	public Account getAccountById(String accountId) {
-		Optional<Account> account = accountRepository.findById(Long.parseLong(accountId));
-		if (account == null)
-			throw new RuntimeException("unfound account");
-
-		return account.get();
-	}
 	
 	@Override
-	public void payToAccount(String accountId, double amount) {
+	public void payToAccount(String accountId, double amount) throws RuntimeException {
 		Account account = accountRepository.getOne(Long.parseLong(accountId));
 		Deposit deposit = new Deposit(new Date(), amount, account);
+		if (account == null) {
+            throw new RuntimeException("Bank Accout Number is not found : " + accountId);
+        } else {
+            if (amount <= 0) {
+                throw new RuntimeException("Please deposit appropriate balance");
+            } else {
 		transactionRepository.save(deposit);
-		account.setDiscount(account.getDiscount() + amount);
+		account.setAmount(account.getAmount() + amount);
 		accountRepository.save(account);
-
+            }
+        }
 	}
 	
 	@Override
-	public void removeFromAccount(String accountId, double amount) {
+	public void removeFromAccount(String accountId, double amount) throws RuntimeException{
 		Account account = accountRepository.getOne(Long.parseLong(accountId));
-		double solde = 0;
-		if (account.getDiscount() + solde < amount){
-			throw new RuntimeException("Insufficient discount ");}
 		Withdrawal withdrawal = new Withdrawal(new Date(),amount, account);
+		if (account == null) {
+            throw new RuntimeException("Bank Account not found :" + accountId);
+        } else {
+            if (amount <= 0) {
+                throw new RuntimeException("Please withdraw appropriate balance");
+            } else {
 		transactionRepository.save(withdrawal);
-		account.setDiscount(account.getDiscount() - amount);
+		account.setAmount(account.getAmount() - amount);
 		accountRepository.save(account);
-
-	}
+		          }
+            }
+        }
 
 
 	@Override

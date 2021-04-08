@@ -2,14 +2,12 @@ package tn.esprit.spring.service;
 
 import org.springframework.data.domain.Page;
 
-import tn.esprit.spring.entity.Account;
 import tn.esprit.spring.entity.Transaction;
 
 
 
 public interface ITransactionService {
 
-	public Account getAccountById(String accountId);
 
 	void payToAccount(String accountId, double amount);
 

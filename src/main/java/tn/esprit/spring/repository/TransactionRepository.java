@@ -13,6 +13,6 @@ import tn.esprit.spring.entity.Transaction;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
 	@Query("select t from Transaction t where t.account.accountId=:x order by t.dateTransaction desc")
-	Page<Transaction> getAccountTransactionsByPage(@Param("x")String accountId, Pageable page);
+	public Page<Transaction> getAccountTransactionsByPage(@Param("x")String accountId, Pageable page);
 }
 
