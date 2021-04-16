@@ -67,6 +67,36 @@ public class OffdateController {
         }
 
     }
+    @Override
+	public List<Offdate> findAllOffdateByUserJPQL(int UserId){
+		return VacationRepository.findAllOffdateByUserJPQL(UserId);
+		
+	}
+	public long calculateDateInterval(Date startDate, Date endDate) {
+		return ChronoUnit.DAYS.between(startDate.toInstant(), endDate.toInstant());
+		
+	}
+	public void acceptOffdateJPQL(Long congeID) {
+		VacationRepository.acceptOffdateJPQL(congeID);
+		
+	}
+	public void DeniedOffdateJPQL(Long congeID) {
+		VacationRepository.DeniedOffdateJPQL(congeID);
+		
+	}
+	public void InprogressOffdateJPQL(Long congeID) {
+		VacationRepository.InprogressOffdateJPQL(congeID);
+		
+	}
+	public List<Offdate> MyInprogressList() {
+		List<Offdate> my =VacationRepository.MyInprogressList();
+		return  my;
+}
+	public List<Offdate> findAllacceptableOffdate() {
+		List<Offdate> acceptable =VacationRepository.findAllacceptableOffdate();
+		return  acceptable;
+}
+}
 
     @PutMapping("/rest/updateOffdate")
     @ResponseBody
