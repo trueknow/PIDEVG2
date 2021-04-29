@@ -1,50 +1,50 @@
 package tn.esprit.spring.entity;
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import lombok.Data;
+import lombok.Getter;
+
+import lombok.Setter;
+
+
 @Data
 @Entity
 
 
-public class Presences {
-	@Id
+public class Presences implements Serializable  {
+	private static final long serialVersionUID = 1L;
+	@Id @Setter @Getter @GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long P_id ;
 	
-	private int P_id;
 	
-	private Integer user_id;
-	private String date;
+	private Date date;
 	private Boolean present;
 	private String activity;
-	private int nb_present_monthly;
+	
 	
 	@OneToOne
 	private User user;
 	
-	public int getP_id() {
+	public Long getP_id() {
 		return P_id;
 	}
-	public void setP_id() {
+	public void setP_id(Long P_id) {
 		this.P_id = P_id;
 	}
-	public Integer getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
-	}
-	public String getDate() {
+	
+	
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public Boolean getPresent() {
@@ -60,33 +60,36 @@ public class Presences {
 	public void setActivity(String activity) {
 		this.activity = activity;
 	}
-//	public Presences() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-//	public Presences(int P_id, Integer user_id, String date, Boolean present, String obs, String activity) {
-//		super();
-//		this.P_id = P_id;
-//		this.user_id = user_id;
-//		this.date = date;
-//		this.present = present;
-//		this.nb_present_monthly=nb_present_monthly;
-//		this.activity = activity;
-//	}
-	public int getNb_present_monthly() {
-		return nb_present_monthly;
+	
+
+	
+	
+	
+	public User getUser() {
+		return user;
 	}
-	public void setNb_present_monthly(int nb_present_monthly) {
-		this.nb_present_monthly = nb_present_monthly;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public void add(Presences presences) {
-		// TODO Auto-generated method stub
+	public Presences(Long p_id, Date date, Boolean present, String activity, User user) {
+		super();
+		P_id = p_id;
+		this.date = date;
+		this.present = present;
+		this.activity = activity;
 		
+		this.user = user;
 	}
-	public void remove(Presences presences) {
-		// TODO Auto-generated method stub
-		
+	public Presences() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+	
+
+}
 	
 	
 
