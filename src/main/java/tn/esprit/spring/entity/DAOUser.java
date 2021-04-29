@@ -2,16 +2,17 @@ package tn.esprit.spring.entity;
 
 
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+//import javax.validation.constraints.Email;
+//import javax.validation.constraints.Max;
+//import javax.validation.constraints.Min;
+//import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.Size;
+
+
 
 import java.io.Serializable;
 import java.util.Set;
 
-import tn.esprit.spring.entity.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column; 
@@ -27,29 +28,26 @@ import javax.persistence.Table;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table( name = "T_USER")
-public class User  implements Serializable {
+public class DAOUser  implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	
-	@Id @Setter @Getter @GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Id  @GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="USER_ID")
 	private Long id;
-	@Getter @Setter @Column(name="NAME")@NotBlank(message = "Display name required") @Size(min = 10) private String name;
-	@Getter @Setter @Column(name="PRENAME")@NotBlank(message = "Display name required") @Size(min = 10) private String prename;
-	@NotBlank(message = "E-mail required") @Column(name="MAIL")@Email(message = "E-mail invalid") @Getter @Setter private String email;
-	@Getter @Setter @Column(name="PASSWORD")@NotBlank(message = "Password required") @Min(6) @Max(60) private  String password;
-	@Getter @Setter@Column(name="ACTIVE") private  Boolean isActive = false;
-	@Getter @Setter @Enumerated(EnumType.STRING)private  ProfileEnum profile;
+    @Column(name="NAME")private String name;
+	@Column(name="PRENAME") private String prename;
+    @Column(name="MAIL")private String email;
+	@Column(name="PASSWORD") private  String password;
+	@Column(name="ACTIVE") private  Boolean isActive = false;
+	@Enumerated(EnumType.STRING)private  ProfileEnum profile;
 	
 	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
 	private Set<Comment> Comment;
@@ -75,10 +73,10 @@ public class User  implements Serializable {
 	@OneToOne(mappedBy="user")
 	private Presences presences;
 	
-	public User( @NotBlank(message = "Display name required ") @Size(min = 4) String name,
-			@NotBlank(message = "Display name required") @Size(min = 4) String prename,
-			@NotBlank(message = "E-mail required") @Email(message = "E-mail invalid") String email,
-			@NotBlank(message = "Password required") @Min(6) @Max(60) String password, Boolean isActive,
+	public DAOUser(  String name,
+			 String prename,
+			 String email,
+			 String password, Boolean isActive,
 			ProfileEnum profile) {
 		super();
 		this.name = name;
@@ -87,6 +85,11 @@ public class User  implements Serializable {
 		this.password = password;
 		this.isActive = isActive;
 		this.profile = profile;
+	}
+
+
+	public DAOUser() {
+		super();
 	}
 
 
@@ -120,6 +123,7 @@ public class User  implements Serializable {
 	}
 
 
+
 	public String getEmail() {
 		return email;
 	}
@@ -128,6 +132,7 @@ public class User  implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 
 	public String getPassword() {
