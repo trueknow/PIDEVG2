@@ -1,14 +1,17 @@
 package tn.esprit.spring.service;
 
 import java.util.List;
-import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.DAOUser;
 
-public interface UserService {
+public interface DAOUserService {
 	
-	public List<User> getAllUsers();
-	public User getbyidUser(String id);
-	public User createUser(User u);
-	public User updateUser(User u);
+	public List<DAOUser> getAllUsers();
+	public DAOUser getbyidUser(String id);
+	public DAOUser createUser(DAOUser u);
+	public DAOUser updateUser(DAOUser u);
 	public void deleteUser(String id);
+	public void updateUserProfile(DAOUser u);
+	public List<DAOUser> findByNames(String name);
+	public void activateclient(String id);
 
 }
