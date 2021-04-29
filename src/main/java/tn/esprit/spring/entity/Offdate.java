@@ -5,25 +5,29 @@ package tn.esprit.spring.entity;
 
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.Column; 
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+
+
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 import lombok.Setter;
+import tn.esprit.spring.entity.AdState;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+
 @Entity
 @Table( name = "Offdate")
 public class Offdate  implements Serializable {
@@ -35,90 +39,133 @@ public class Offdate  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id @Setter @Getter @GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long congeID ;
-	@Column(name="offdates")
+	
 
 
     
-    private String startTime  ;
-    private String endTime  ;
+    private Date startTime  ;
+    private Date endTime  ;
     private int duration;
-    private String status;
+	private String status;
     private String pic;
-    private String userId;
-    private String validator;
-    private String Sender;
+    @Enumerated(EnumType.STRING)
+	AdState AdState;
+   
     @ManyToOne
-    User user;
+   	private User user;
+    
+    @ManyToOne
+   	private User user1;
+    @ManyToOne
+    @JoinColumn(name = "idemp", referencedColumnName = "idbc", insertable=false, updatable=false)
+	private EmployeInfo EmployeInfo;
+
 	public Long getCongeID() {
 		return congeID;
 	}
+
 	public void setCongeID(Long congeID) {
 		this.congeID = congeID;
 	}
-	public String getStartTime() {
+
+	public Date getStartTime() {
 		return startTime;
 	}
-	public void setStartTime(String startTime) {
+
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
-	public String getEndTime() {
+
+	public Date getEndTime() {
 		return endTime;
 	}
-	public void setEndTime(String endTime) {
+
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public int getDuration() {
-		return duration;
-	}
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
+
+	
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getPic() {
 		return pic;
 	}
+
 	public void setPic(String pic) {
 		this.pic = pic;
 	}
-	public String getUserId() {
-		return userId;
+	
+
+	
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public String getValidator() {
-		return validator;
+
+	public User getUser1() {
+		return user1;
 	}
-	public void setValidator(String validator) {
-		this.validator = validator;
+
+	public void setUser1(User user1) {
+		this.user1 = user1;
 	}
-	public String getSender() {
-		return Sender;
+
+	public Offdate(Long congeID, Date startTime, Date endTime, int duration, String status, String pic,
+			tn.esprit.spring.entity.AdState adState, User user, User user1,
+			tn.esprit.spring.entity.EmployeInfo employeInfo) {
+		super();
+		this.congeID = congeID;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.duration = duration;
+		this.status = status;
+		this.pic = pic;
+		AdState = adState;
+		this.user = user;
+		this.user1 = user1;
+		EmployeInfo = employeInfo;
 	}
-	public void setSender(String sender) {
-		Sender = sender;
+	public Offdate() {
+		super();
 	}
-//	public Offdate() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-//	public Offdate(Long congeID, String startTime, String endTime, int duration, String status, String pic,
-//			String userId, String validator, String sender) {
-//		super();
-//		this.congeID = congeID;
-//		this.startTime = startTime;
-//		this.endTime = endTime;
-//		this.duration = duration;
-//		this.status = status;
-//		this.pic = pic;
-//		this.userId = userId;
-//		this.validator = validator;
-//		Sender = sender;
-//	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public AdState getAdState() {
+		return AdState;
+	}
+
+	public void setAdState(AdState adState) {
+		AdState = adState;
+	}
+
+	public EmployeInfo getEmployeInfo() {
+		return EmployeInfo;
+	}
+
+	public void setEmployeInfo(EmployeInfo employeInfo) {
+		EmployeInfo = employeInfo;
+	}
+
+	
+   
+    
+
     
     }
