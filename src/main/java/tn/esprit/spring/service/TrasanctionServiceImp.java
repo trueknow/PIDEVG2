@@ -1,8 +1,9 @@
 package tn.esprit.spring.service;
 
 
-import java.util.Date;
 
+
+import java.util.Date;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import tn.esprit.spring.repository.AccountRepository;
 import tn.esprit.spring.repository.TransactionRepository;
 
 
+
 @Service
 @Transactional
 public class TrasanctionServiceImp implements ITransactionService {
@@ -30,42 +32,48 @@ public class TrasanctionServiceImp implements ITransactionService {
 	@Autowired
 	private TransactionRepository transactionRepository;
 
-	
-	@Override
-	public void payToAccount(String accountId, double amount) throws RuntimeException {
-		Account account = accountRepository.getOne(Long.parseLong(accountId));
-		Deposit deposit = new Deposit(new Date(), amount, account);
-		if (account == null) {
-            throw new RuntimeException("Bank Accout Number is not found : " + accountId);
-        } else {
-            if (amount <= 0) {
-                throw new RuntimeException("Please deposit appropriate balance");
-            } else {
-		transactionRepository.save(deposit);
-		account.setAmount(account.getAmount() + amount);
-		accountRepository.save(account);
-            }
-        }
-	}
-	
-	@Override
-	public void removeFromAccount(String accountId, double amount) throws RuntimeException{
-		Account account = accountRepository.getOne(Long.parseLong(accountId));
-		Withdrawal withdrawal = new Withdrawal(new Date(),amount, account);
-		if (account == null) {
-            throw new RuntimeException("Bank Account not found :" + accountId);
-        } else {
-            if (amount <= 0) {
-                throw new RuntimeException("Please withdraw appropriate balance");
-            } else {
-		transactionRepository.save(withdrawal);
-		account.setAmount(account.getAmount() - amount);
-		accountRepository.save(account);
-		          }
-            }
-        }
 
+	@Override
+    public void payToAccount( String accountId, double amount) {
 
+        // On charge le compte
+		Account account = accountRepository.getOne(Long.parseLong(accountId));
+
+        // on charge l'employe
+        Deposit deposit = new Deposit();
+
+        // mettre a jour date et montant compte et employe
+        deposit.setDateTransaction( new Date() );
+        deposit.setAmount( amount );
+        deposit.setAccount( account );
+
+        // sauvgarder l'operation
+        transactionRepository.save(deposit);
+        // mettre a jour le solde
+        account.setSolde(account.getSolde() + amount);
+		accountRepository.save(account);
+
+    }
+	
+    @Override
+    public void removeFromAccount(String accountId, double amount) {
+		Account account = accountRepository.getOne(Long.parseLong(accountId));
+        if ( account.getSolde() < amount )
+            throw new RuntimeException( "Solde insuffisant !" );
+        // on charge l'employe
+        Withdrawal withdrawal = new Withdrawal(new Date(),amount, account);
+        // mettre a jour date et montant compte et employe
+        withdrawal.setDateTransaction( new Date() );
+        withdrawal.setAmount( amount );
+        withdrawal.setAccount( account );
+        // sauvgarder l'operation
+        transactionRepository.save(withdrawal);
+        // mettre a jour le solde
+        account.setSolde(account.getSolde() - amount);
+		accountRepository.save(account);
+
+    }
+        
 	@Override
 	public void transfer(String accountOriginId, String accountDestId, double amount) {
 		if (accountOriginId.equals(accountDestId)){
@@ -76,9 +84,12 @@ public class TrasanctionServiceImp implements ITransactionService {
 	}
 	
 	@Override
-	public Page<Transaction> getAccountTransactionByPage(String accountId,int page, int size) {
+    public Page<Transaction> getTransactions( String accountId, int page, int size ) {
+
 		Pageable paging = PageRequest.of(page, size);
-		return transactionRepository.getAccountTransactionsByPage(accountId, paging);
-	}
+		return transactionRepository.getTransactions(accountId, paging);
+
+    }
 }
+
 
