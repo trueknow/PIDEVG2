@@ -4,8 +4,6 @@ import org.springframework.data.domain.Page;
 
 import tn.esprit.spring.entity.Transaction;
 
-
-
 public interface ITransactionService {
 
 
@@ -15,6 +13,7 @@ public interface ITransactionService {
 
     void transfer(String accountOriginId, String accountDestId, double amount);
 
-	public Page<Transaction> getAccountTransactionByPage(String accountId, int page, int size);
+    public Page<Transaction> getTransactions( String accountId, int page, int size );
+
 
 }
