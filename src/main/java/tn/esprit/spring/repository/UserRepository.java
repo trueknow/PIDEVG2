@@ -20,5 +20,6 @@ public interface UserRepository extends CrudRepository<DAOUser, Long>{
 	
 	List<DAOUser> findByName(String name);
 	DAOUser findByemail(String email);
+	public DAOUser getUserByEmailAndPassword(String login, String password);
 
 }

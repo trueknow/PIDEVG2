@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: PIDEVG2
+Implementation-Version: 1.0
+Built-By: trueknow
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_60
+Implementation-URL: https://spring.io/projects/spring-boot/PIDEVG2
+Created-By: Maven Integration for Eclipse
+

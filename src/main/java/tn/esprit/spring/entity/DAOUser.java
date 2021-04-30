@@ -72,6 +72,12 @@ public class DAOUser  implements Serializable {
 	private Account account;
 	@OneToOne(mappedBy="DAOUser")
 	private Presences presences;
+	@OneToOne
+	private Loan loan;
+        @OneToOne
+	private Loan_Management loan_Management;
+ @OneToMany(cascade = CascadeType.ALL, mappedBy="DAOUser")
+        private Set<Loanlog>Loanlog ;
 	
 	public DAOUser(  String name,
 			 String prename,

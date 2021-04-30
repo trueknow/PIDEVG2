@@ -93,5 +93,10 @@ public class DAOUserServiceImpl implements DAOUserService{
 		user.setIsActive(true);
 		userRepository.save(user);
 	}
+	
+	@Override
+	public DAOUser authenticate(String login, String password) {
+	return userRepository.getUserByEmailAndPassword(login, password);
+	}
 
 }
