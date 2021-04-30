@@ -3,7 +3,6 @@ package tn.esprit.spring.entity;
 import java.io.Serializable;
 
 
-
 import java.util.Collection;
 import java.util.Date;
 
@@ -13,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import tn.esprit.spring.entity.User;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import tn.esprit.spring.entity.DAOUser;
 
 @Entity
 public  class Account implements Serializable {
@@ -24,10 +26,11 @@ public  class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long accountId;
+	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
-	private double amount;
+	private double solde;
 	@OneToOne
-	private User user;
+	private DAOUser dAOUser;
 	@OneToMany(mappedBy="account")
 	private Collection<Transaction> transactions;
 	
@@ -35,10 +38,18 @@ public  class Account implements Serializable {
 		
 	}
 
-	public Account(Long accountId, Date dateCreation, User user) {
+	public Account(Long accountId, Date dateCreation, DAOUser dAOUser, double solde, Collection<Transaction> transactions) {
 		this.accountId = accountId;
 		this.dateCreation = dateCreation;
-		this.user = user;
+		this.solde = solde;
+		this.dAOUser = dAOUser;
+		this.transactions = transactions;
+	}
+	public Account(Date dateCreation, DAOUser dAOUser, double solde, Collection<Transaction> transactions) {
+		this.dateCreation = dateCreation;
+		this.solde = solde;
+		this.dAOUser = dAOUser;
+		this.transactions = transactions;
 	}
 
 	public Long getAccounIdt() {
@@ -58,12 +69,12 @@ public  class Account implements Serializable {
 	}
 
 
-	public User getUser() {
-		return user;
+	public DAOUser getUser() {
+		return dAOUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(DAOUser dAOUser) {
+		this.dAOUser = dAOUser;
 	}
 
 	public Collection<Transaction> getTransactions() {
@@ -75,13 +86,14 @@ public  class Account implements Serializable {
 	}
 
 
-	public double getAmount() {
-		return amount;
+	public double getSolde() {
+		return solde;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public void setSolde(double solde) {
+		this.solde = solde;
 	}
 
 
 }
+
