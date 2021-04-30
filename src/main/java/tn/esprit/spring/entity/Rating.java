@@ -21,8 +21,8 @@ public class Rating implements Serializable{
     @JoinColumn(name="idpost")
     private Post post ;
     @ManyToOne
-	@JoinColumn(name="ID_USER")
-	private User user;
+	@JoinColumn(name="ID_DAOUser")
+	private DAOUser DAOUser;
     
    
     

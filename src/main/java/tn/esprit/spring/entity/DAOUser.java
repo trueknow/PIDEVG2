@@ -49,28 +49,28 @@ public class DAOUser  implements Serializable {
 	@Column(name="ACTIVE") private  Boolean isActive = false;
 	@Enumerated(EnumType.STRING)private  ProfileEnum profile;
 	
-	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
+	@OneToMany (cascade = CascadeType.ALL, mappedBy ="DAOUser" )
 	private Set<Comment> Comment;
 
-	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
+	@OneToMany (cascade = CascadeType.ALL, mappedBy ="DAOUser" )
 	private Set<Like> Like;
 	
-	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy ="DAOUser" )	
 	private Set<Rating> Rating;
 
-	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
+	@OneToMany (cascade = CascadeType.ALL, mappedBy ="DAOUser" )
 	private Set<Post> Post;
 
-	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
+	@OneToMany (cascade = CascadeType.ALL, mappedBy ="DAOUser" )
 	private Set<Topic> Topic;
 	
 
-	@OneToMany (cascade = CascadeType.ALL, mappedBy ="user" )
+	@OneToMany (cascade = CascadeType.ALL, mappedBy ="DAOUser" )
 	private Set<Offdate> offdate;
 	
-	@OneToOne(mappedBy="user")
+	@OneToOne(mappedBy="DAOUser")
 	private Account account;
-	@OneToOne(mappedBy="user")
+	@OneToOne(mappedBy="DAOUser")
 	private Presences presences;
 	
 	public DAOUser(  String name,

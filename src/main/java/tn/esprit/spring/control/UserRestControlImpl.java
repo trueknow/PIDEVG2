@@ -3,8 +3,8 @@ package tn.esprit.spring.control;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,35 +66,35 @@ public class UserRestControlImpl {
 	public DAOUser modifyUser(@RequestBody DAOUser user) {
 		return userService.updateUser(user);
 	}
-	@PutMapping("/modify-client-name-prename")
-	@ResponseBody
-	public DAOUser modifyUserclient(@RequestBody DAOUser user) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder. getContext(). getAuthentication()
-				. getPrincipal();
-				String username = userDetails. getUsername();
-				DAOUser client = repo.findByemail(username);
-				user.setId(client.getId());
-				user.setPassword(client.getPassword());
-				user.setEmail(client.getEmail());
-				user.setIsActive(client.getIsActive());
-				user.setProfile(client.getProfile());
-		return userService.updateUser(user);
-	}
-	@PutMapping("/modify-client-email")
-	@ResponseBody
-	public DAOUser modifyUserclientemail(@RequestBody DAOUser user) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder. getContext(). getAuthentication()
-				. getPrincipal();
-				String username = userDetails. getUsername();
-				DAOUser client = repo.findByemail(username);
-				user.setId(client.getId());
-				user.setPassword(client.getPassword());
-				user.setName(client.getName());
-				user.setPrename(client.getPrename());
-				user.setIsActive(client.getIsActive());
-				user.setProfile(client.getProfile());
-		return userService.updateUser(user);
-	}
+//	@PutMapping("/modify-client-name-prename")
+//	@ResponseBody
+//	public DAOUser modifyUserclient(@RequestBody DAOUser user) {
+////		UserDetails userDetails = (UserDetails) SecurityContextHolder. getContext(). getAuthentication()
+////				. getPrincipal();
+//				String username = userDetails. getUsername();
+//				DAOUser client = repo.findByemail(username);
+//				user.setId(client.getId());
+//				user.setPassword(client.getPassword());
+//				user.setEmail(client.getEmail());
+//				user.setIsActive(client.getIsActive());
+//				user.setProfile(client.getProfile());
+//		return userService.updateUser(user);
+//	}
+//	@PutMapping("/modify-client-email")
+//	@ResponseBody
+//	public DAOUser modifyUserclientemail(@RequestBody DAOUser user) {
+//		UserDetails userDetails = (UserDetails) SecurityContextHolder. getContext(). getAuthentication()
+//				. getPrincipal();
+//				String username = userDetails. getUsername();
+//				DAOUser client = repo.findByemail(username);
+//				user.setId(client.getId());
+//				user.setPassword(client.getPassword());
+//				user.setName(client.getName());
+//				user.setPrename(client.getPrename());
+//				user.setIsActive(client.getIsActive());
+//				user.setProfile(client.getProfile());
+//		return userService.updateUser(user);
+//	}
 	// http://localhost:8080/SpringMVC/servlet/modify-user
 	@PutMapping("/modify-user-role")
 	@ResponseBody

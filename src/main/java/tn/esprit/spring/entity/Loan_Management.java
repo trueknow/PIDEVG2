@@ -35,7 +35,7 @@ public class Loan_Management implements Serializable{
 	
 
 	@OneToOne
-	private User User;
+	private DAOUser DAOUser;
 	
 	public Loan_Management(Long idrequest ,Double AP , Double NPA,Date NPD)
 	{ super();
@@ -94,14 +94,14 @@ public class Loan_Management implements Serializable{
 
 
 
-	public User getUser() {
-		return User;
+	public DAOUser getDAOUser() {
+		return DAOUser;
 	}
 
 
 
-	public void setUser(User user) {
-		User = user;
+	public void setDAOUser(DAOUser DAOUser) {
+		DAOUser = DAOUser;
 	}
 	
 }

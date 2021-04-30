@@ -58,6 +58,12 @@ public  class Postserviceempl implements PostService {
 		return posts;
 	}
 
+	@Override
+	public Post findByPostName(String descriptionpost) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
 

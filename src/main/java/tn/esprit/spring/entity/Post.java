@@ -33,8 +33,8 @@ public class Post implements Serializable{
     @JoinColumn(name="idTopic")
     private Topic topic ;
     @ManyToOne
-	@JoinColumn(name="ID_USER")
-	private User user;
+	@JoinColumn(name="ID_DAOUser")
+	private DAOUser DAOUser;
     
     
 

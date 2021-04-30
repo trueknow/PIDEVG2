@@ -21,8 +21,8 @@ public class Like implements Serializable{
     @JoinColumn(name="idpost")
     private Post post ;
 	@ManyToOne
-	@JoinColumn(name="ID_USER")
-	private User user;
+	@JoinColumn(name="ID_DAOUser")
+	private DAOUser DAOUser;
     
     
      public Like (Long idlike ) {
@@ -53,20 +53,20 @@ public class Like implements Serializable{
 	public void setPost(Post post) {
 		this.post = post;
 	}
-	public User getUser() {
-		return user;
+	public DAOUser getDAOUser() {
+		return DAOUser;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setDAOUser(DAOUser DAOUser) {
+		this.DAOUser = DAOUser;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Like(Long idlike, Post post, User user) {
+	public Like(Long idlike, Post post, DAOUser DAOUser) {
 		super();
 		this.idlike = idlike;
 		this.post = post;
-		this.user = user;
+		this.DAOUser = DAOUser;
 	}
 
 

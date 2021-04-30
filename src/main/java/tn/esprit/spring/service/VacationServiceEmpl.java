@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.AdState;
 import tn.esprit.spring.entity.Offdate;
-import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.DAOUser;
 import tn.esprit.spring.repository.VacationRepository;
 import tn.esprit.spring.repository.UserRepository;
 
@@ -54,13 +54,13 @@ UserRepository UserRepository ;
 		v.setAdState(AdState.Inprogress);
 		Offdate	OffdateSaved = VacationRepository.save(v);
 		
-		User user = UserRepository.findById(Long.parseLong( UserId)).orElse(null);
+		DAOUser user = UserRepository.findById(Long.parseLong( UserId)).orElse(null);
 		System.out.println(user.getId());
 		
-		v.setUser(user);
-		User user1 = UserRepository.findById(Long.parseLong( User1Id)).orElse(null);
+		v.setDAOUser(user);
+		DAOUser user1 = UserRepository.findById(Long.parseLong( User1Id)).orElse(null);
 		System.out.println(user.getId());
-		v.setUser1(user1);
+		v.setDAOUser1(user1);
 		 VacationRepository.save(v);
 
 		

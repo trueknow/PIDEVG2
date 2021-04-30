@@ -46,7 +46,7 @@ public class Loan implements Serializable {
 	private Boolean isFilesOk;//l employee met true or false pour les fichier ca sert a la calcul du scoring
 	
 	@OneToOne
-	private User user;
+	private DAOUser DAOUser;
 	@OneToOne
 	private Loan_Bank Loan_Bank;
 	
@@ -116,14 +116,14 @@ public class Loan implements Serializable {
 
 
 
-	public User getUser() {
-		return user;
+	public DAOUser getDAOUser() {
+		return DAOUser;
 	}
 
 
 
-	public void setUser(User User) {
-		user = User;
+	public void setDAOUser(DAOUser DAOUser) {
+		DAOUser = DAOUser;
 	}
 
 

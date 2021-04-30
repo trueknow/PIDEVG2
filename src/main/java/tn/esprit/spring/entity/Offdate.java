@@ -52,10 +52,10 @@ public class Offdate  implements Serializable {
 	AdState AdState;
    
     @ManyToOne
-   	private User user;
+   	private DAOUser DAOUser;
     
     @ManyToOne
-   	private User user1;
+   	private DAOUser DAOUser1;
     @ManyToOne
     @JoinColumn(name = "idemp", referencedColumnName = "idbc", insertable=false, updatable=false)
 	private EmployeInfo EmployeInfo;
@@ -104,24 +104,24 @@ public class Offdate  implements Serializable {
 	
 
 	
-	public User getUser() {
-		return user;
+	public DAOUser getDAOUser() {
+		return DAOUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setDAOUser(DAOUser DAOUser) {
+		this.DAOUser = DAOUser;
 	}
 
-	public User getUser1() {
-		return user1;
+	public DAOUser getDAOUser1() {
+		return DAOUser1;
 	}
 
-	public void setUser1(User user1) {
-		this.user1 = user1;
+	public void setDAOUser1(DAOUser DAOUser1) {
+		this.DAOUser1 = DAOUser1;
 	}
 
 	public Offdate(Long congeID, Date startTime, Date endTime, int duration, String status, String pic,
-			tn.esprit.spring.entity.AdState adState, User user, User user1,
+			tn.esprit.spring.entity.AdState adState, DAOUser DAOUser, DAOUser DAOUser1,
 			tn.esprit.spring.entity.EmployeInfo employeInfo) {
 		super();
 		this.congeID = congeID;
@@ -131,8 +131,8 @@ public class Offdate  implements Serializable {
 		this.status = status;
 		this.pic = pic;
 		AdState = adState;
-		this.user = user;
-		this.user1 = user1;
+		this.DAOUser = DAOUser;
+		this.DAOUser1 = DAOUser1;
 		EmployeInfo = employeInfo;
 	}
 	public Offdate() {

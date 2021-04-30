@@ -23,8 +23,8 @@ public class Topic implements Serializable{
     @OneToMany (cascade = CascadeType.ALL, mappedBy ="topic" )
     private Set<Post> Post;
     @ManyToOne
-	@JoinColumn(name="ID_USER")
-    private User user ;
+	@JoinColumn(name="ID_DAOUser")
+    private DAOUser DAOUser ;
 
    
     

@@ -30,7 +30,7 @@ public  class Account implements Serializable {
 	private Date dateCreation;
 	private double solde;
 	@OneToOne
-	private DAOUser dAOUser;
+	private DAOUser DAOUser;
 	@OneToMany(mappedBy="account")
 	private Collection<Transaction> transactions;
 	
@@ -42,13 +42,13 @@ public  class Account implements Serializable {
 		this.accountId = accountId;
 		this.dateCreation = dateCreation;
 		this.solde = solde;
-		this.dAOUser = dAOUser;
+		this.DAOUser = dAOUser;
 		this.transactions = transactions;
 	}
-	public Account(Date dateCreation, DAOUser dAOUser, double solde, Collection<Transaction> transactions) {
+	public Account(Date dateCreation, DAOUser DAOUser, double solde, Collection<Transaction> transactions) {
 		this.dateCreation = dateCreation;
 		this.solde = solde;
-		this.dAOUser = dAOUser;
+		this.DAOUser = DAOUser;
 		this.transactions = transactions;
 	}
 
@@ -70,11 +70,11 @@ public  class Account implements Serializable {
 
 
 	public DAOUser getUser() {
-		return dAOUser;
+		return DAOUser;
 	}
 
 	public void setUser(DAOUser dAOUser) {
-		this.dAOUser = dAOUser;
+		this.DAOUser = dAOUser;
 	}
 
 	public Collection<Transaction> getTransactions() {

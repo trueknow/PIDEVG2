@@ -23,14 +23,14 @@ import org.springframework.web.multipart.MultipartFile;
 import tn.esprit.spring.entity.Files;
 import tn.esprit.spring.entity.Loan;
 import tn.esprit.spring.entity.Loan_Bank;
-import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.DAOUser;
 import tn.esprit.spring.service.Filesservice;
 import tn.esprit.spring.service.IMailService;
 import tn.esprit.spring.service.LoanService;
 import tn.esprit.spring.service.Loan_BankService;
 import tn.esprit.spring.service.Loan_ManagementService;
 import tn.esprit.spring.service.Loan_logService;
-import tn.esprit.spring.service.UserService;
+import tn.esprit.spring.service.DAOUserService;
 
 //@CrossOrigin("http://localhost:3306")
 @RestController
@@ -40,7 +40,7 @@ public class LoanRestControllmpl {
 	@Autowired
 	LoanService loanservice;
 	@Autowired
-	UserService userService;
+	DAOUserService DAOUserService;
 	@Autowired
 	IMailService iMailservice;
 	@Autowired
@@ -96,8 +96,8 @@ public class LoanRestControllmpl {
 	@PostMapping("/alert/{id}")
 	@ResponseBody
 	public void alert(@PathVariable("id") String id) {
-		User user = userService.getbyidUser(id);
-		iMailservice.sendSimpleMail(user.getEmail()," Alert", "Please Verify your payement  ");
+		DAOUser DAOUser = DAOUserService.getbyidUser(id);
+		iMailservice.sendSimpleMail(DAOUser.getEmail()," Alert", "Please Verify your payement  ");
 	}
 	
 	@GetMapping("/")

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 import tn.esprit.spring.entity.Presences;
-import tn.esprit.spring.entity.User;
+import tn.esprit.spring.entity.DAOUser;
 import tn.esprit.spring.repository.PresencesRep;
 import tn.esprit.spring.repository.UserRepository;
 
@@ -52,10 +52,10 @@ UserRepository UserRepository;
 
 		Presences	pSaved = PresencesRep.save(v);
 		
-		User user = UserRepository.findById(Long.parseLong( User)).orElse(null);
+		DAOUser user = UserRepository.findById(Long.parseLong( User)).orElse(null);
 		System.out.println(user.getId());
 		
-		v.setUser(user);
+		v.setDAOUser(user);
 		return pSaved;
 	}
 	@Override

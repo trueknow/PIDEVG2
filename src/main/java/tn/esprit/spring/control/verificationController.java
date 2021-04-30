@@ -1,6 +1,7 @@
 package tn.esprit.spring.control;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import tn.esprit.spring.entity.OffdateVerif;
 @RestController
 @RequestMapping("/OffdateVerif")
 public class verificationController {
+
 
     private Emailler Emailler;
 

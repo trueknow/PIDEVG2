@@ -57,7 +57,7 @@ public class Loan_Managementserviceimpl implements Loan_ManagementService {
 
 		if (l != null) {
 			
-			mailService.sendSimpleMail(l.getUser().getEmail(), "Alert", "check your payement please "+l.getIdrequest());
+			mailService.sendSimpleMail(l.getDAOUser().getEmail(), "Alert", "check your payement please "+l.getIdrequest());
 
 		}
 

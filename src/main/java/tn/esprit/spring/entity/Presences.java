@@ -31,7 +31,7 @@ public class Presences implements Serializable  {
 	
 	
 	@OneToOne
-	private User user;
+	private DAOUser DAOUser;
 	
 	public Long getP_id() {
 		return P_id;
@@ -65,20 +65,20 @@ public class Presences implements Serializable  {
 	
 	
 	
-	public User getUser() {
-		return user;
+	public DAOUser getDAOUser() {
+		return DAOUser;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setDAOUser(DAOUser DAOUser) {
+		this.DAOUser = DAOUser;
 	}
-	public Presences(Long p_id, Date date, Boolean present, String activity, User user) {
+	public Presences(Long p_id, Date date, Boolean present, String activity, DAOUser DAOUser) {
 		super();
 		P_id = p_id;
 		this.date = date;
 		this.present = present;
 		this.activity = activity;
 		
-		this.user = user;
+		this.DAOUser = DAOUser;
 	}
 	public Presences() {
 		super();
@@ -93,4 +93,4 @@ public class Presences implements Serializable  {
 	
 	
 
-}
+

@@ -24,9 +24,9 @@ public class Comment implements Serializable {
     private Post post ;
    
     @ManyToOne
-	@JoinColumn(name="ID_USER")
+	@JoinColumn(name="ID_DAOUser")
     
-    private User user ;
+    private DAOUser DAOUser ;
 
     
     public Comment(long idcm  , String description , String date  ) {
@@ -85,22 +85,22 @@ public class Comment implements Serializable {
 	public void setPost(Post post) {
 		this.post = post;
 	}
-	public User getUser() {
-		return user;
+	public DAOUser getDAOUser() {
+		return DAOUser;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setDAOUser(DAOUser DAOUser) {
+		this.DAOUser = DAOUser;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Comment(Long idcm, String description, String date, Post post, User user) {
+	public Comment(Long idcm, String description, String date, Post post, DAOUser DAOUser) {
 		super();
 		this.idcm = idcm;
 		this.description = description;
 		this.date = date;
 		this.post = post;
-		this.user = user;
+		this.DAOUser = DAOUser;
 	}
 	
 }

@@ -41,18 +41,18 @@ public class Loanlog implements Serializable {
 	private Status Status;
 
 	@ManyToOne
-	User user;
+	DAOUser DAOUser;
 	
 	
 	
 
 	public Loanlog(java.util.Date date, Double amount, tn.esprit.spring.entity.Status status,
-			tn.esprit.spring.entity.User user) {
+			tn.esprit.spring.entity.DAOUser DAOUser) {
 		super();
 		Date = date;
 		Amount = amount;
 		Status = status;
-		this.user = user;
+		this.DAOUser = DAOUser;
 	}
 	
 	
@@ -100,15 +100,15 @@ public class Loanlog implements Serializable {
 
 
 
-	public User getUser() {
-		return user;
+	public DAOUser getDAOUser() {
+		return DAOUser;
 	}
 
 
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setDAOUser(DAOUser DAOUser) {
+		this.DAOUser = DAOUser;
 	}
 
 	
