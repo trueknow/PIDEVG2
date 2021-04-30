@@ -2,12 +2,13 @@ package tn.esprit.spring.service;
 
 import java.util.List;
 
+
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import tn.esprit.spring.entity.Account;
-
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.repository.AccountRepository;
@@ -46,7 +47,13 @@ public class AccountServiceImpl implements IAccountService {
 		Account accountAdded = accountRepository.save(a);
 		return accountAdded;
 	}
-
+ 
+	@Override
+	public long addOrUpdateAccount(Account a) {
+		accountRepository.save(a);
+	return a.getAccounIdt();
+	} 
+	
 	@Override
 	public Account retrieveAccount(String accountId) {
 		L.info("in retrieveUser accountId= " + accountId);
@@ -56,3 +63,4 @@ public class AccountServiceImpl implements IAccountService {
 	}
 
 }
+
