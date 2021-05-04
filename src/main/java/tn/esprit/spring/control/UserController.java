@@ -2,6 +2,8 @@ package tn.esprit.spring.control;
 
 
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -21,24 +23,29 @@ import tn.esprit.spring.service.DAOUserService;
 @ELBeanName(value = "userController") // Name of the bean used by JSF
 @Join(path = "/", to = "/login.jsf")
 public class UserController {
-	
-	
+
+
 	@Autowired
 	DAOUserService userService;
 	private String name;
 	private String prename;
-    private String email;
-	 private  String password;
+	private String email;
+	private  String password;
 	private  Boolean isActive ;
 	private  ProfileEnum profile;
 	private Boolean loggedIn;
-	 private DAOUser authenticatedUser;
-	 private DAOUser user;
+	private DAOUser authenticatedUser;
+	private DAOUser user;
+	public ProfileEnum[] getProfiles() { return profile.values(); }
+
+	private List<DAOUser> users; // ajouter le getter et le setter
 	
-	
-	
-	
-	
+
+
+
+	public void setUsers(List<DAOUser> users) {
+		this.users = users;
+	}
 	public DAOUser getUser() {
 		return user;
 	}
@@ -58,7 +65,7 @@ public class UserController {
 		this.loggedIn = loggedIn;
 	}
 
-		 public String getName() {
+	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -95,26 +102,43 @@ public class UserController {
 		this.profile = profile;
 	}
 
-	
+
 	public String doLogin() {
 		String navigateTo = "null";
 		DAOUser u=userService.authenticate(email, password);
 		if (u != null && u.getProfile() == ProfileEnum.ROLE_ADMIN) {
-		navigateTo = "/pages/admin/welcome.xhtml?faces-redirect=true";
-		loggedIn = true; }
+			navigateTo = "/pages/admin/welcome.xhtml?faces-redirect=true";
+			loggedIn = true; }
 		else {
-		FacesMessage facesMessage =
-		new FacesMessage("Login Failed: please check your username/password and try again.");
-		FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+			FacesMessage facesMessage =
+					new FacesMessage("Login Failed: please check your username/password and try again.");
+			FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
 		}
 		return navigateTo;
-		}
-		public String doLogout() {
+	}
+	public String doLogout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/login.xhtml?faces-redirect=true";
-		}
-		
-		
+	}
+	
+	
+	
+	public List<DAOUser> getUsers() {
+		users = userService.getAllUsers();
+		return users;
+	} 
+	public void addUser() {
+		userService.addOrUpdateUser(new DAOUser(name, prename, email, password, isActive, profile));
+		} 
+	public void removeUser(int userId)
+	{
+	userService.deleteUser(String.valueOf(userId));
+	}
+	
+
+
+
+
 
 
 }

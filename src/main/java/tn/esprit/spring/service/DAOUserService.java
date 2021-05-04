@@ -14,5 +14,5 @@ public interface DAOUserService {
 	public List<DAOUser> findByNames(String name);
 	public void activateclient(String id);
 	public DAOUser authenticate(String login, String password) ;
-
+	public Long addOrUpdateUser(DAOUser user);
 }

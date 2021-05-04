@@ -16,15 +16,55 @@
 value="#{userController.email}"></h:inputText></td></tr>
 <tr><td><h:outputText value="Mot de Passe"></h:outputText></td>
 <td><h:inputSecret value="#{userController.password}"></h:inputSecret></td></tr>
-<tr><td><h:outputText value="Nom"></h:outputText></td>
+<tr><td><h:outputText value="name"></h:outputText></td>
 <td><h:inputText value="#{userController.name}"></h:inputText></td></tr>
-<tr><td><h:outputText value="Prenom"></h:outputText></td>
+<tr><td><h:outputText value="prename"></h:outputText></td>
 <td><h:inputText value="#{userController.prename}"></h:inputText></td></tr>
 <tr><td><h:outputText value="Actif / Inactif"></h:outputText></td>
 <td><h:selectBooleanCheckbox
 value="#{userController.isActive}"></h:selectBooleanCheckbox></td></tr>
 <tr><td colspan="2"> <h:commandButton value="Ajouter user"
 action="#{userController.addUser()}" /></td></tr>
+<tr>
+<td><h:outputText value="profile"></h:outputText></td>
+<td><h:selectOneMenu value="#{userController.profile}">
+<f:selectItem itemLabel="Choisir le profile" itemValue="#{null}" />
+<f:selectItems value="#{userController.profiles}" />
+</h:selectOneMenu></td>
+</tr>
 </table></h:form></h:panelGroup>
+<h:panelGroup columns="2">
+<h:form>
+<h:dataTable value="#{userController.users}" var="user" border="1">
+
+
+<h:column><f:facet name="header"><h:outputText value="Login (Email)" /></f:facet>
+<h:outputText value="#{user.email}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="Prename" /></f:facet>
+<h:outputText value="#{user.prename}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="Name" /></f:facet>
+<h:outputText value="#{user.name}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="profile" /></f:facet>
+<h:outputText value="#{user.profile}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="Actif" /></f:facet>
+<h:outputText value="#{user.isActive == true ? 'Oui' : 'Non'}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="Action" /></f:facet>
+<h:commandButton action="#{userController.removeUser(user.id)}" value="Supprimer" />
+</h:column>
+
+
+</h:dataTable>
+</h:form>
+</h:panelGroup>
 </ui:define>
 </ui:composition>
