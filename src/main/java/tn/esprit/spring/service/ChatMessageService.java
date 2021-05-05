@@ -7,10 +7,14 @@ import tn.esprit.spring.entity.ChatMessage;
 
 
 public interface ChatMessageService {
-	public List<ChatMessage> getAllUsers();
-	public ChatMessage getbyidUser(String id);
-	public ChatMessage createUser(ChatMessage m);
-	public ChatMessage updateUser(ChatMessage m);
-	public void deleteUser(String id);
+	public List<ChatMessage> getAllChatMessage();
+	public ChatMessage getbyidChatMessage(String id);
+	public ChatMessage createChatMessage(ChatMessage m);
+	public ChatMessage updateChatMessage(ChatMessage m);
+	public void deleteChatMessage(String id);
+	List<ChatMessage> retrieveAllChatMessages();
+	ChatMessage retrieveChatMessage(String idcm);
+	List<ChatMessage> retrieveAllChatMessage();
+	public ChatMessage addChatMessage(ChatMessage c);
 
 }
