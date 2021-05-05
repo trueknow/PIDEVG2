@@ -11,5 +11,6 @@ public interface ChatRoomService {
 	public ChatRoom createUser(ChatRoom m);
 	public ChatRoom updateUser(ChatRoom m);
 	public void deleteUser(String id);
+	ChatRoom addChatRoom(ChatRoom c);
 
 }
